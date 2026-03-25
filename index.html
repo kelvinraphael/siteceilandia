@@ -1,0 +1,209 @@
+*<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SiteCEI</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: Arial, sans-serif; color: #222; line-height: 1.6; }
+        a { color: inherit; }
+
+        .topbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(9, 59, 118, 0.85);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.8rem 2rem;
+            z-index: 100;
+        }
+        .topbar .logo { font-weight: bold; font-size: 1.3rem; letter-spacing: 0.4px; }
+        .topbar nav a {
+            color: #fff;
+            margin-left: 1.1rem;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: opacity 0.2s ease;
+        }
+        .topbar nav a:hover { opacity: 0.85; }
+
+        .hero {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+}
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.85) contrast(1.05) saturate(1.2);
+            image-rendering: auto;
+        }
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.6));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            padding: 0 1.2rem;
+        }
+        .hero-overlay h1 { font-size: clamp(2rem, 5vw, 4rem); margin-bottom: 0.8rem; }
+        .hero-overlay p { font-size: clamp(1rem, 2.2vw, 1.4rem); margin-bottom: 1.3rem; max-width: 620px; }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.4rem;
+            border-radius: 40px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+        .btn-primary { background: #0a71c8; color: white; }
+        .btn-secondary { background: #0a71c8; color: white; }
+        .btn:hover { transform: translateY(-2px); opacity: 0.95; }
+
+        .cards-section, .sobre-section, .contato-section { padding: 70px 1.2rem 50px; max-width: 1100px; margin: 0 auto; }
+        .cards-section h2, .sobre-section h2, .contato-section h2 { text-align: center; margin-bottom: 1.2rem; color: #0f3e7f; }
+
+        .cards { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); margin-bottom: 1.4rem; }
+        .card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(5, 18, 45, 0.1);
+            transition: transform 0.2s ease;
+        }
+        .card:hover { transform: translateY(-5px); }
+        .card img { width: 100%; height: 160px; object-fit: cover; }
+        .card h3 { margin: 0.8rem 1rem 0.4rem; }
+        .card p { margin: 0 1rem 1rem; color: #4d5e7a; }
+
+        .sobre-section p { max-width: 700px; margin: 0 auto 1.2rem; text-align: center; color: #3c4e6f; }
+
+        .contato-content { display: grid; gap: 20px; grid-template-columns: 1fr 1fr; align-items: start; }
+        .contato-form, .contato-info { background: white; border-radius: 10px; padding: 1.2rem; box-shadow: 0 8px 20px rgba(5,18,45,0.08); }
+        .contato-form label { font-weight: 600; margin-top: 0.7rem; display: block; }
+        .contato-form input, .contato-form textarea { width: 100%; padding: 0.7rem; margin-top: 0.35rem; border: 1px solid #cdd8eb; border-radius: 7px; }
+        .contato-form textarea { min-height: 130px; resize: vertical; }
+        .contato-info .mapa { width: 100%; height: 170px; object-fit: cover; border-radius: 8px; margin: 0.7rem 0; }
+        .contato-info p { margin: 0.35rem 0; color: #0f3f7f; }
+
+        .footer { background: #0c315b; color: #c8daf5; text-align: center; padding: 16px 0; font-size: 0.9rem; }
+
+        @media(max-width: 900px) {
+            .contato-content { grid-template-columns: 1fr; }
+            .topbar { padding: 0.65rem 1rem; }
+            .topbar nav a { margin-left: 0.7rem; font-size: 0.9rem; }
+        }
+        @media(max-width: 650px) {
+            .hero-overlay h1 { font-size: 2rem; }
+            .hero-overlay p { font-size: 1rem; }
+            .cards-section, .sobre-section, .contato-section { padding: 50px 0 40px; }
+        }
+        
+    </style>
+</head>
+<body>
+    <header class="topbar">
+        <div class="logo">ExploreCEI</div>
+        <nav>
+            <a href="#hero">Início</a>
+            <a href="#destinos">Destinos</a>
+            <a href="#sobre">Sobre</a>
+            <a href="#contato">Contato</a>
+        </nav>
+    </header>
+
+    <section id="hero" class="hero">
+        <img src="capa.png " alt="Destinos de viagem" class="hero-image" />
+        <div class="hero-overlay">
+            <h1>Melhor site para conhecer a Ceilandia!</h1>
+            <p>Explore os nossas atrações.</p>
+            <a href="#destinos" class="btn btn-primary">Saiba Mais</a>
+        </div>
+    </section>
+
+    <section id="destinos" class="cards-section">
+        <h2>Destinos Populares</h2>
+        <div class="cards">
+            <article class="card">
+                <img src="praça.jpg" alt="Praça Da Biblia" />
+                <h3>Praça Da Biblia</h3>
+                <p>Conheça a praça mais icônica da cidade.</p>
+            <a href="https://www.google.com/maps?q=Praça+da+Bíblia+Ceilândia" target="_blank" class="btn btn-primary">Como chegar</a>
+</article>    
+            </article>
+            <article class="card">
+                <img src="14.jpg" alt="14" />
+                <h3>Hambuergueria 14 Irmãos</h3>
+                <p>A hambuergueria mais amada.</p>
+                <a href="https://www.google.com/maps/dir/?api=1&destination=Hamburgueria+14+Irmãos+Ceilândia" target="_blank" class="btn btn-primary">
+Como chegar
+</a>
+            </article>
+            <article class="card">
+                <img src="jk.jpg" alt="jk" />
+                <h3>Shopping JK</h3>
+                <p>Conheça o maior shopping da região da Ceilandia</p>
+                <a href="https://www.google.com/maps/dir/?api=1&destination=Shopping+JK+Ceilândia" target="_blank" class="btn btn-primary">
+Como chegar
+</a>
+            </article>
+            <article class="card">
+                <img src="feira.jpg" alt="feira" />
+                <h3>Feira do Produtor</h3>
+                <p>Venha conhecer a melhor feira de produtores da região.</p>
+                <a href="https://www.google.com/maps/search/Feira+do+Produtor+Ceilândia" target="_blank" class="btn btn-primary">
+Como chegar
+</a>
+            </article>
+        </div>
+        <div style="text-align: center;">
+<a href="#contato" class="btn btn-secondary">Ver Mais Destinos</a>
+</div>
+    </section>
+
+    <section id="sobre" class="sobre-section">
+        <h2>Sobre Nós</h2>
+        <p>Somos apaixonados pela nossa cidade!</p>
+        <div style="text-align: center;">
+<a href="#contato" class="btn btn-secondary">Saiba Mais</a>
+</div>
+    </section>
+
+    <section id="contato" class="contato-section">
+        <h2>Fale Conosco</h2>
+        <div class="contato-content">
+            <form class="contato-form">
+                <label>Nome</label>
+                <input type="text" placeholder="Seu nome" />
+                <label>E-mail</label>
+                <input type="email" placeholder="Seu e-mail" />
+                <label>Mensagem</label>
+                <textarea placeholder="Sua mensagem"></textarea>
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </form>
+            <div class="contato-info">
+                <h3>Onde Estamos</h3>
+                <img src="cei.jpg" alt="Mapa" class="mapa" />
+                <p>✉ email:kelvinceicei@gmail.com</p>
+                <p>📞 (61)99999-9999</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>© 2026 ExploreCEI - Todos os direitos reservados</p>
+    </footer>
+</body>
+</html>
